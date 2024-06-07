@@ -1,13 +1,13 @@
 # João Lehodey - June 7th, 2024
 # ROS installation:
 
-sudo apt update -y && sudo apt install locales -y
-sudo locale-gen en_US en_US.UTF-8 -y
-sudo update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8 -y
+sudo apt update && sudo apt install locales -y
+sudo locale-gen en_US en_US.UTF-8 
+sudo update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8 
 export LANG=en_US.UTF-8
 
-sudo apt install -y software-properties-common 
-sudo add-apt-repository -y universe
+sudo apt install software-properties-common -y
+sudo add-apt-repository universe
 
 sudo apt update && sudo apt install curl -y
 sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg
@@ -49,3 +49,12 @@ sudo apt-get install raspi-config -y
 #
 #
 #####------------------------
+
+#download px4 messages 
+cd ~
+mkdir -p ~/px4_ros2_ws/src
+cd ~/px4_ros2_ws/src
+git clone https://github.com/PX4/px4_msgs.git 
+cd ~/px4_ros2_ws
+colcon build
+
