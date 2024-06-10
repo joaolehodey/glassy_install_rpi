@@ -37,19 +37,23 @@ make
 sudo make install
 sudo ldconfig /usr/local/lib/
 
-# activate tx rx /gpio
-sudo apt update -y
-sudo apt upgrade -y
-sudo apt-get install raspi-config -y
 
+
+# Install eigen3
+sudo apt install libeigen3-dev -y
 
 #####------------------------
 #
+# activate tx rx /gpio
+# sudo apt update -y
+# sudo apt upgrade -y
+# sudo apt-get install raspi-config -y
 # Now follow step 3 onwards in https://docs.px4.io/main/en/companion_computer/pixhawk_rpi.html
 #
 #
 #####------------------------
 
+source /opt/ros/humble/setup.bash
 #download px4 messages 
 cd ~
 mkdir -p ~/px4_ros2_ws/src
@@ -57,4 +61,18 @@ cd ~/px4_ros2_ws/src
 git clone https://github.com/PX4/px4_msgs.git 
 cd ~/px4_ros2_ws
 colcon build
+
+source ~/px4_ros2_ws/install/setup.bash
+
+cd ~
+mkdir -p ~/glassy_ws/src
+cd ~/glassy_ws/src
+git clone https://github.com/dsor-isr/MIR-Competition-2024.git
+cd ~/glassy_ws
+colcon build --symlink-install
+
+
+echo 'source /opt/ros/humble/setup.bash' >> ~/.bashrc 
+echo 'source ~/px4_ros2_ws/install/setup.bash' >> ~/.bashrc 
+echo 'source ~/glassy_ws/install/setup.bash' >> ~/.bashrc
 
